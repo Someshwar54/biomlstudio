@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const pool = require('../db/pool'); // assume pool exports pg Pool instance
+const store = require('../db/store'); // file+db store abstraction (fallback when DB unavailable)
 const router = express.Router();
 
 const UPLOAD_TMP_DIR = path.resolve(process.cwd(), 'data', 'uploads', 'tmp');
@@ -16,13 +17,7 @@ router.post('/init', async (req, res) => {
   try {
     const { filename, total_size, chunk_size } = req.body;
     if (!filename || !total_size || !chunk_size) return res.status(400).json({ error: 'missing params' });
-    const chunk_count = Math.ceil(total_size / chunk_size);
-    const result = await pool.query(
-      `INSERT INTO uploads(filename, total_size, chunk_count, chunk_size, uploaded_chunks, status)
-       VALUES($1,$2,$3,$4,$5,$6) RETURNING id`,
-      [filename, total_size, chunk_count, chunk_size, JSON.stringify([]), 'in_progress']
-    );
-    const upload_id = result.rows[0].id;
+    const { id: upload_id, chunk_count } = await store.createUpload({ filename, total_size, chunk_size });
     return res.json({ upload_id, chunk_size, chunk_count });
   } catch (err) {
     console.error(err);
@@ -38,9 +33,8 @@ router.put('/:upload_id/:chunk_index', async (req, res) => {
     if (isNaN(idx)) return res.status(400).json({ error: 'invalid chunk index' });
 
     // read upload metadata
-    const up = await pool.query('SELECT * FROM uploads WHERE id=$1', [upload_id]);
-    if (up.rows.length === 0) return res.status(404).json({ error: 'upload not found' });
-    const meta = up.rows[0];
+    const meta = await store.getUpload(upload_id);
+    if (!meta) return res.status(404).json({ error: 'upload not found' });
     const tmpDir = path.join(UPLOAD_TMP_DIR, upload_id);
     fs.mkdirSync(tmpDir, { recursive: true });
 
@@ -54,9 +48,10 @@ router.put('/:upload_id/:chunk_index', async (req, res) => {
     });
 
     // register uploaded chunk in DB if not present
-    const uploaded = new Set(JSON.parse(meta.uploaded_chunks || '[]'));
+    const existing = Array.isArray(meta.uploaded_chunks) ? meta.uploaded_chunks : JSON.parse(meta.uploaded_chunks || '[]');
+    const uploaded = new Set(existing);
     uploaded.add(idx);
-    await pool.query('UPDATE uploads SET uploaded_chunks=$1, updated_at=now() WHERE id=$2', [JSON.stringify([...uploaded]), upload_id]);
+    await store.updateUploadedChunks(upload_id, [...uploaded]);
 
     return res.json({ ok: true, uploaded_chunks_count: uploaded.size });
   } catch (err) {
@@ -69,9 +64,9 @@ router.put('/:upload_id/:chunk_index', async (req, res) => {
 router.get('/:upload_id/status', async (req, res) => {
   try {
     const { upload_id } = req.params;
-    const up = await pool.query('SELECT id, filename, total_size, chunk_count, chunk_size, uploaded_chunks, status FROM uploads WHERE id=$1', [upload_id]);
-    if (up.rows.length === 0) return res.status(404).json({ error: 'upload not found' });
-    return res.json(up.rows[0]);
+    const meta = await store.getUpload(upload_id);
+    if (!meta) return res.status(404).json({ error: 'upload not found' });
+    return res.json({ id: meta.id, filename: meta.filename, total_size: meta.total_size, chunk_count: meta.chunk_count, chunk_size: meta.chunk_size, uploaded_chunks: meta.uploaded_chunks, status: meta.status });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'status failed' });
@@ -82,14 +77,13 @@ router.get('/:upload_id/status', async (req, res) => {
 router.post('/:upload_id/complete', async (req, res) => {
   try {
     const { upload_id } = req.params;
-    const up = await pool.query('SELECT * FROM uploads WHERE id=$1', [upload_id]);
-    if (up.rows.length === 0) return res.status(404).json({ error: 'upload not found' });
-    const meta = up.rows[0];
+    const meta = await store.getUpload(upload_id);
+    if (!meta) return res.status(404).json({ error: 'upload not found' });
     const tmpDir = path.join(UPLOAD_TMP_DIR, upload_id);
     const outPath = path.join(UPLOAD_DIR, meta.filename);
 
     // Verify all chunks present
-    const uploaded = new Set(JSON.parse(meta.uploaded_chunks || '[]'));
+    const uploaded = new Set(Array.isArray(meta.uploaded_chunks) ? meta.uploaded_chunks : JSON.parse(meta.uploaded_chunks || '[]'));
     if (uploaded.size !== meta.chunk_count) {
       return res.status(400).json({ error: 'not all chunks uploaded', uploaded_count: uploaded.size });
     }
@@ -119,7 +113,7 @@ router.post('/:upload_id/complete', async (req, res) => {
     fs.renameSync(tempOut, outPath);
 
     // update DB
-    await pool.query('UPDATE uploads SET status=$1, checksum=$2, updated_at=now() WHERE id=$3', ['completed', checksum, upload_id]);
+    await store.updateStatusAndChecksum(upload_id, 'completed', checksum);
 
     // cleanup tmp chunks
     fs.rmSync(tmpDir, { recursive: true, force: true });
