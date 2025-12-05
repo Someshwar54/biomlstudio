@@ -6,6 +6,9 @@ app.use(express.json());
 // register upload routes
 app.use('/api/upload', require('./routes/upload'));
 
+// register jobs routes (producer for job queue)
+app.use('/api/jobs', require('./routes/jobs'));
+
 // Health check endpoint (lightweight for docker healthchecks)
 app.get('/healthz', (req, res) => res.status(200).json({status:'ok'}));
 
@@ -19,16 +22,28 @@ const PORT = process.env.PORT || 4000;
 // Attempt to apply DB migrations at start-up if available. This makes local dev/tests
 // resilient: if the uploads table doesn't exist we'll run the SQL migration file.
 async function ensureMigrations(pool) {
-	const sqlPath = path.resolve(process.cwd(), 'infrastructure', 'db', 'migrations', '001_create_uploads.sql');
-	if (!fs.existsSync(sqlPath)) {
-		console.log('No migration file found at', sqlPath);
+	const migrationDir = path.resolve(process.cwd(), 'infrastructure', 'db', 'migrations');
+	if (!fs.existsSync(migrationDir)) {
+		console.log('No migration directory found at', migrationDir);
 		return;
 	}
 
-	const sql = fs.readFileSync(sqlPath, 'utf8');
-	console.log('Applying DB migration:', sqlPath);
-	await pool.query(sql);
-	console.log('DB migration applied (if needed).');
+	// Apply all migrations in order (001, 002, etc.)
+	const migrations = fs.readdirSync(migrationDir)
+		.filter(f => f.endsWith('.sql'))
+		.sort();
+	
+	for (const migFile of migrations) {
+		const sqlPath = path.join(migrationDir, migFile);
+		try {
+			const sql = fs.readFileSync(sqlPath, 'utf8');
+			console.log(`[migrations] applying ${migFile}...`);
+			await pool.query(sql);
+			console.log(`[migrations] ${migFile} applied (idempotent).`);
+		} catch (err) {
+			console.error(`[migrations] failed to apply ${migFile}:`, err.message);
+		}
+	}
 }
 
 async function bootstrap() {
