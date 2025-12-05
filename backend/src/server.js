@@ -9,6 +9,12 @@ app.use('/api/upload', require('./routes/upload'));
 // register jobs routes (producer for job queue)
 app.use('/api/jobs', require('./routes/jobs'));
 
+// register auth routes
+app.use('/api/auth', require('./routes/auth'));
+
+// register xai routes
+app.use('/api/xai', require('./routes/xai'));
+
 // Health check endpoint (lightweight for docker healthchecks)
 app.get('/healthz', (req, res) => res.status(200).json({status:'ok'}));
 

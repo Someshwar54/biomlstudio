@@ -4,3 +4,5 @@ celery
 redis
 pandas
 psycopg2-binary
+shap
+lime
