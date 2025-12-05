@@ -1,0 +1,20 @@
+{
+  "name": "BioMLStudio DevContainer",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "backend",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "esbenp.prettier-vscode",
+    "ms-azuretools.vscode-docker"
+  ],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "python.defaultInterpreterPath": "/workspace/.venv/bin/python"
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "forwardPorts": [4000, 3000, 5678],
+  "remoteUser": "vscode"
+}

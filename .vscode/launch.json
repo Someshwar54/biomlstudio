@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Backend (Node)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/src/server.js",
+      "restart": true,
+      "console": "integratedTerminal",
+      "env": {
+        "PORT": "4000",
+        "NODE_ENV": "development"
+      },
+      "cwd": "${workspaceFolder}/backend"
+    },
+    {
+      "name": "ML Worker (Python)",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["ml_engine/tests/test_smoke_training.py", "-v"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "justMyCode": true
+    },
+    {
+      "name": "ML Training Script",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/ml_engine/tools/smoke_train.py",
+      "args": ["--epochs", "5"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Docker Compose Stack",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/run_dev.sh",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "setup-env"
+    }
+  ],
+  "compounds": []
+}

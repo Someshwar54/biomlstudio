@@ -1,0 +1,182 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "setup-env",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolder}/scripts/setup_env.sh"],
+      "isBackground": false,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "run-dev",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolder}/scripts/run_dev.sh"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^.*$",
+          "file": 1,
+          "location": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Building and Starting",
+          "endsPattern": "^System Running"
+        }
+      }
+    },
+    {
+      "label": "docker-compose-down",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "cd ${workspaceFolder} && docker compose down"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "test-ml-smoke",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "cd ${workspaceFolder} && python3 -m pytest ml_engine/tests/test_smoke_training.py -v"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+): (ERROR|FAILED|WARNING)",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4
+        }
+      }
+    },
+    {
+      "label": "test-ml-all",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "cd ${workspaceFolder} && python3 -m pytest ml_engine/tests/ -v"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+): (ERROR|FAILED|WARNING)",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4
+        }
+      }
+    },
+    {
+      "label": "backend-install",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "cd ${workspaceFolder}/backend && npm install"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "backend-start",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "cd ${workspaceFolder}/backend && npm start"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^.*Backend running on (\\d+).*$",
+          "message": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^.*",
+          "endsPattern": "Backend running on"
+        }
+      }
+    },
+    {
+      "label": "smoke-train-py",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "cd ${workspaceFolder} && python3 ml_engine/tools/smoke_train.py --epochs 5"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "docker-logs-backend",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "cd ${workspaceFolder} && docker compose logs -f backend"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "docker-logs-ml-worker",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "cd ${workspaceFolder} && docker compose logs -f ml_worker"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "docker-shell-backend",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "cd ${workspaceFolder} && docker compose exec backend sh"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "isBackground": false,
+      "problemMatcher": []
+    },
+    {
+      "label": "docker-shell-ml-worker",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "cd ${workspaceFolder} && docker compose exec ml_worker bash"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "isBackground": false,
+      "problemMatcher": []
+    }
+  ]
+}

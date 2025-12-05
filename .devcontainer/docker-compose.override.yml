@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  backend:
+    volumes:
+      - ..:/workspace:cached
+    environment:
+      - DATABASE_URL=postgres://${DB_USER:-bioml_admin}:${DB_PASS:-bioml_pass}@postgres:5432/biomlstudio
+      - REDIS_HOST=redis
