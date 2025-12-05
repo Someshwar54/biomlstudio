@@ -1,0 +1,21 @@
+﻿{
+    "name":  "bioml-backend-stub",
+    "version":  "0.1.0",
+    "main":  "src/server.js",
+    "dependencies":  {
+                         "express":  "^4.18.2",
+                         "dotenv":  "^16.3.1",
+                         "cors":  "^2.8.5",
+                         "pg": "^8.10.0"
+                     },
+    "devDependencies": {
+        "eslint": "^8.50.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-import": "^2.28.1"
+    },
+    "scripts":  {
+                    "start":  "node src/server.js",
+                    "lint":  "eslint src/ --fix || true",
+                    "test":  "echo 'No tests configured yet' && exit 0"
+                }
+}
