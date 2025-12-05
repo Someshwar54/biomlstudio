@@ -3,6 +3,7 @@ torch
 numpy
 pandas
 requests
+psycopg2-binary
 
 # If pip cannot find a compatible torch wheel on your platform,
 # the PyTorch CPU wheels are available on the following index.

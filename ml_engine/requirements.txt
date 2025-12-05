@@ -1,0 +1,8 @@
+# ml_engine/requirements.txt
+# Core dependencies for smoke training and model export
+torch
+psycopg2-binary
+
+# If pip cannot find a compatible torch wheel on your platform,
+# use the PyTorch CPU-only index:
+# pip install torch --index-url https://download.pytorch.org/whl/cpu
