@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "bioml.fullname" . }}-ml-worker
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.mlWorker.replicas }}
+  selector:
+    matchLabels:
+      app: ml-worker
+  template:
+    metadata:
+      labels:
+        app: ml-worker
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: ml-worker
+        image: {{ .Values.mlWorker.image }}
+        resources:
+          {{- toYaml .Values.mlWorker.resources | nindent 10 }}
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 20

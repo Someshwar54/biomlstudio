@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "bioml.fullname" . }}-backend
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: {{ .Values.backend.image }}
+        ports:
+        - containerPort: 4000
+        resources:
+          {{- toYaml .Values.backend.resources | nindent 10 }}
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 4000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 4000
+          initialDelaySeconds: 10
+          periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "bioml.fullname" . }}-backend-svc
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: backend
+  ports:
+  - port: 4000
+    targetPort: 4000
+  type: ClusterIP

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-worker
+  namespace: bioml
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ml-worker
+  template:
+    metadata:
+      labels:
+        app: ml-worker
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: ml-worker
+        image: bioml-ml-worker:latest
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 20
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://user:pass@postgres:5432/bioml"
+        - name: REDIS_URL
+          value: "redis://redis:6379"

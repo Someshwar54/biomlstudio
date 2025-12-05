@@ -1,0 +1,13 @@
+name: CI Dockerized (heavy)
+
+on: [workflow_dispatch]
+
+jobs:
+  heavy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build test image
+        run: docker build -t bioml-ci -f infrastructure/ci/Dockerfile .
+      - name: Run heavy tests in container
+        run: docker run --rm -v ${{ github.workspace }}:/workspace bioml-ci bash -lc "cd /workspace && ./scripts/run_local_ci.sh"

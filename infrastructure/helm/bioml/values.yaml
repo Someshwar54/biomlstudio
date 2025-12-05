@@ -1,0 +1,52 @@
+# Default values for bioml helm chart
+
+backend:
+  image: bioml-backend:latest
+  replicas: 1
+  resources:
+    requests:
+      cpu: "200m"
+      memory: "256Mi"
+    limits:
+      cpu: "1"
+      memory: "512Mi"
+
+mlWorker:
+  image: bioml-ml-worker:latest
+  replicas: 1
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "256Mi"
+
+postgres:
+  image: postgres:13
+  db: bioml
+  user: user
+  password: pass  # Use secret in production
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  storage: 1Gi
+
+redis:
+  image: redis:6
+  resources:
+    requests:
+      cpu: "50m"
+      memory: "64Mi"
+    limits:
+      cpu: "200m"
+      memory: "128Mi"
+
+# Secrets placeholders - create k8s secrets separately
+secrets:
+  postgresPassword: "placeholder"
+  redisPassword: ""

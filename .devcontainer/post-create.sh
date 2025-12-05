@@ -12,8 +12,8 @@ fi
 source /workspace/.venv/bin/activate
 
 pip install --upgrade pip
-# Install test deps (best-effort; continue even if heavy packages fail)
-pip install -r /workspace/ml_engine/tests/requirements-ci.txt || true
+# Note: Heavy ML deps (torch) not installed by default.
+# Run ./scripts/install_heavy_deps.sh to install on-demand.
 
 # Install backend npm deps as non-root user (no-audit for speed)
 if [ -f /workspace/backend/package.json ]; then
