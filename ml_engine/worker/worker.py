@@ -11,6 +11,8 @@ import hashlib
 import psycopg2
 import redis
 from urllib.parse import urlparse
+from ml_engine.train.smoke_trainer import SmokeTrainer
+from ml_engine.export.export_service import ModelExportService
 
 # Configuration from environment
 DB_URL = os.getenv('DATABASE_URL', 'postgres://bioml_admin:bioml_pass@localhost:5432/biomlstudio')
@@ -46,28 +48,10 @@ def update_job_status(conn, job_id, status):
         cur.execute("UPDATE jobs SET status=%s, updated_at=now() WHERE id=%s", (status, job_id))
     conn.commit()
 
-def write_artifact(conn, job_id, payload):
+def write_artifact(conn, job_id, artifact_path, checksum):
     """
-    Write artifact to disk and register in DB.
-    Returns: (artifact_path, checksum)
+    Register artifact in DB.
     """
-    os.makedirs(ARTIFACT_DIR, exist_ok=True)
-    artifact_path = os.path.join(ARTIFACT_DIR, f"{job_id}.txt")
-    
-    # Write payload to disk
-    with open(artifact_path, 'w') as f:
-        f.write(payload)
-    
-    # Compute SHA256 checksum
-    h = hashlib.sha256()
-    with open(artifact_path, 'rb') as f:
-        while True:
-            block = f.read(65536)
-            if not block:
-                break
-            h.update(block)
-    checksum = h.hexdigest()
-    
     # Record artifact in DB
     with conn.cursor() as cur:
         cur.execute(
@@ -75,31 +59,43 @@ def write_artifact(conn, job_id, payload):
             (job_id, artifact_path, checksum)
         )
     conn.commit()
-    
-    print(f"[worker] artifact written: {artifact_path} (checksum: {checksum[:16]}...)")
+
+    print(f"[worker] artifact registered: {artifact_path} (checksum: {checksum[:16]}...)")
     return artifact_path, checksum
 
 def process_job(conn, job_id):
-    """Process a single job: update status, run training, write artifact, mark done."""
+    """Process a single job: update status, run training, export model, mark done."""
     print(f"[worker] processing job: {job_id}")
-    
+
     # Update status to running
     update_job_status(conn, job_id, 'running')
-    
-    # Simulate training: create a small result string
-    payload = f"trained-job:{job_id} at {time.time()}"
-    
-    # Write artifact and record in DB
-    artifact_path, checksum = write_artifact(conn, job_id, payload)
-    
+
+    # Run smoke training
+    trainer = SmokeTrainer()
+    model, final_loss = trainer.train()
+
+    # Export model
+    exporter = ModelExportService()
+    model_path, manifest_path, checksum = exporter.export_model(
+        model, job_id, metadata={'final_loss': final_loss}
+    )
+
+    # Write artifact (model file) to DB
+    write_artifact(conn, job_id, model_path, checksum)
+
     # Update job with completed status and result
     with conn.cursor() as cur:
         cur.execute(
             "UPDATE jobs SET status=%s, result_payload=%s, updated_at=now() WHERE id=%s",
-            ('completed', json.dumps({'artifact': artifact_path, 'checksum': checksum}), job_id)
+            ('completed', json.dumps({
+                'model_path': model_path,
+                'manifest_path': manifest_path,
+                'checksum': checksum,
+                'final_loss': final_loss
+            }), job_id)
         )
     conn.commit()
-    
+
     print(f"[worker] job completed: {job_id}")
 
 def worker_loop():
