@@ -1,0 +1,176 @@
+[
+  {
+    "timestamp": "2025-12-08 15:33:06",
+    "level": "INFO",
+    "message": "Training started",
+    "elapsed_time": 0.0
+  },
+  {
+    "timestamp": "2025-12-08 15:33:06",
+    "level": "INFO",
+    "message": "Task type: classification",
+    "elapsed_time": 0.0014033317565917969
+  },
+  {
+    "timestamp": "2025-12-08 15:33:06",
+    "level": "INFO",
+    "message": "Training samples: 84, Features: 7",
+    "elapsed_time": 0.002461671829223633
+  },
+  {
+    "timestamp": "2025-12-08 15:33:06",
+    "level": "INFO",
+    "message": "Selecting optimal models...",
+    "elapsed_time": 0.003937244415283203
+  },
+  {
+    "timestamp": "2025-12-08 15:33:06",
+    "level": "INFO",
+    "message": "Selected 4 models: ['Logistic Regression', 'Random Forest', 'Gradient Boosting', 'Support Vector Machine']",
+    "elapsed_time": 0.00597834587097168
+  },
+  {
+    "timestamp": "2025-12-08 15:33:06",
+    "level": "INFO",
+    "message": "Training model 1/4: Logistic Regression",
+    "elapsed_time": 0.007152080535888672
+  },
+  {
+    "timestamp": "2025-12-08 15:33:06",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 0.008149385452270508
+  },
+  {
+    "timestamp": "2025-12-08 15:33:12",
+    "level": "WARNING",
+    "message": "  Hyperparameter optimization failed: \nAll the 30 fits failed.\nIt is very likely that your model is misconfigured.\nYou can try to debug the error by setting error_score='raise'.\n\nBelow are more details about the failures:\n--------------------------------------------------------------------------------\n15 fits failed with the following error:\nTraceback (most recent call last):\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\model_selection\\_validation.py\", line 729, in _fit_and_score\n    estimator.fit(X_train, y_train, **fit_params)\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\base.py\", line 1152, in wrapper\n    return fit_method(estimator, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\linear_model\\_logistic.py\", line 1253, in fit\n    raise ValueError(\nValueError: This solver needs samples of at least 2 classes in the data, but the data contains only one class: 0\n\n--------------------------------------------------------------------------------\n15 fits failed with the following error:\nTraceback (most recent call last):\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\model_selection\\_validation.py\", line 729, in _fit_and_score\n    estimator.fit(X_train, y_train, **fit_params)\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\base.py\", line 1152, in wrapper\n    return fit_method(estimator, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\linear_model\\_logistic.py\", line 1228, in fit\n    self.coef_, self.intercept_, self.n_iter_ = _fit_liblinear(\n                                                ^^^^^^^^^^^^^^^\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\svm\\_base.py\", line 1187, in _fit_liblinear\n    raise ValueError(\nValueError: This solver needs samples of at least 2 classes in the data, but the data contains only one class: 0\n",
+    "elapsed_time": 5.66753625869751
+  },
+  {
+    "timestamp": "2025-12-08 15:33:12",
+    "level": "INFO",
+    "message": "  Fitting Logistic Regression...",
+    "elapsed_time": 5.668745756149292
+  },
+  {
+    "timestamp": "2025-12-08 15:33:12",
+    "level": "ERROR",
+    "message": "  Error training Logistic Regression: This solver needs samples of at least 2 classes in the data, but the data contains only one class: 0",
+    "elapsed_time": 5.672055244445801
+  },
+  {
+    "timestamp": "2025-12-08 15:33:12",
+    "level": "INFO",
+    "message": "Training model 2/4: Random Forest",
+    "elapsed_time": 5.677058935165405
+  },
+  {
+    "timestamp": "2025-12-08 15:33:12",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 5.679055690765381
+  },
+  {
+    "timestamp": "2025-12-08 15:33:15",
+    "level": "INFO",
+    "message": "  Best params: {'n_estimators': 200, 'min_samples_split': 5, 'min_samples_leaf': 4, 'max_depth': 20}",
+    "elapsed_time": 8.905046939849854
+  },
+  {
+    "timestamp": "2025-12-08 15:33:15",
+    "level": "INFO",
+    "message": "  Fitting Random Forest...",
+    "elapsed_time": 8.906056642532349
+  },
+  {
+    "timestamp": "2025-12-08 15:33:15",
+    "level": "INFO",
+    "message": "  Training completed in 3.79s",
+    "elapsed_time": 9.468375444412231
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "SUCCESS",
+    "message": "Random Forest - Score: 1.0000",
+    "elapsed_time": 9.674805879592896
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "INFO",
+    "message": "Training model 3/4: Gradient Boosting",
+    "elapsed_time": 9.676353216171265
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 9.677868604660034
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "INFO",
+    "message": "  Fitting Gradient Boosting...",
+    "elapsed_time": 9.679397821426392
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "ERROR",
+    "message": "  Error training Gradient Boosting: y contains 1 class after sample_weight trimmed classes with zero weights, while a minimum of 2 classes are required.",
+    "elapsed_time": 9.681555271148682
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "INFO",
+    "message": "Training model 4/4: Support Vector Machine",
+    "elapsed_time": 9.683734893798828
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 9.684975385665894
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "WARNING",
+    "message": "  Hyperparameter optimization failed: \nAll the 30 fits failed.\nIt is very likely that your model is misconfigured.\nYou can try to debug the error by setting error_score='raise'.\n\nBelow are more details about the failures:\n--------------------------------------------------------------------------------\n30 fits failed with the following error:\nTraceback (most recent call last):\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\model_selection\\_validation.py\", line 729, in _fit_and_score\n    estimator.fit(X_train, y_train, **fit_params)\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\base.py\", line 1152, in wrapper\n    return fit_method(estimator, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\svm\\_base.py\", line 199, in fit\n    y = self._validate_targets(y)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Pablo\\fullstac\\Final project\\BioMlStudio\\backend\\venv\\Lib\\site-packages\\sklearn\\svm\\_base.py\", line 747, in _validate_targets\n    raise ValueError(\nValueError: The number of classes has to be greater than one; got 1 class\n",
+    "elapsed_time": 9.805316925048828
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "INFO",
+    "message": "  Fitting Support Vector Machine...",
+    "elapsed_time": 9.80732774734497
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "ERROR",
+    "message": "  Error training Support Vector Machine: The number of classes has to be greater than one; got 1 class",
+    "elapsed_time": 9.809396743774414
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "SUCCESS",
+    "message": "Best model: Random Forest (Score: 1.0000)",
+    "elapsed_time": 9.810399055480957
+  },
+  {
+    "timestamp": "2025-12-08 15:33:16",
+    "level": "INFO",
+    "message": "Generating comprehensive evaluation...",
+    "elapsed_time": 9.812798023223877
+  },
+  {
+    "timestamp": "2025-12-08 15:33:17",
+    "level": "INFO",
+    "message": "Evaluation completed successfully",
+    "elapsed_time": 11.175074338912964
+  },
+  {
+    "timestamp": "2025-12-08 15:33:20",
+    "level": "INFO",
+    "message": "Model saved to models\\job_115\\model_job_115.joblib",
+    "elapsed_time": 14.259213924407959
+  }
+]

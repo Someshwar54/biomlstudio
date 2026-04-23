@@ -1,0 +1,292 @@
+/* Dynamic Progress Bars */
+.progress-bar-blue {
+  background-color: #60a5fa;
+  height: 0.5rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: #374151;
+  border-radius: 9999px;
+  height: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Dataset Composition Charts */
+.composition-chart-A {
+  background-color: #10b981;
+  height: 1.25rem;
+  border-radius: 0.25rem;
+}
+
+.composition-chart-T {
+  background-color: #3b82f6;
+  height: 1.25rem;
+  border-radius: 0.25rem;
+}
+
+.composition-chart-G {
+  background-color: #f59e0b;
+  height: 1.25rem;
+  border-radius: 0.25rem;
+}
+
+.composition-chart-C {
+  background-color: #ef4444;
+  height: 1.25rem;
+  border-radius: 0.25rem;
+}
+
+.composition-chart-container {
+  display: flex;
+  height: 1.25rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  background-color: #1f2937;
+}
+
+/* Layer Visualization Bars */
+.layer-bar-input {
+  background-color: #22c55e;
+  height: 100%;
+  border-radius: 0.25rem;
+}
+
+.layer-bar-hidden {
+  background-color: #3b82f6;
+  height: 100%;
+  border-radius: 0.25rem;
+}
+
+.layer-bar-output {
+  background-color: #f59e0b;
+  height: 100%;
+  border-radius: 0.25rem;
+}
+
+.layer-bar-container {
+  height: 2rem;
+  background-color: #1f2937;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+/* Metric Progress Indicators */
+.metric-progress {
+  height: 0.25rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.metric-progress-high {
+  background-color: #10b981;
+}
+
+.metric-progress-medium {
+  background-color: #f59e0b;
+}
+
+.metric-progress-low {
+  background-color: #ef4444;
+}
+
+/* Model Architecture Visualization */
+.architecture-node {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  border: 1px solid #3b82f6;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  color: white;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.architecture-connection {
+  width: 2px;
+  height: 3rem;
+  background: linear-gradient(180deg, #3b82f6 0%, #1e40af 100%);
+  margin: 0 auto;
+}
+
+/* Performance Chart Bars */
+.performance-bar {
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.performance-bar-accuracy {
+  background-color: #10b981;
+}
+
+.performance-bar-precision {
+  background-color: #3b82f6;
+}
+
+.performance-bar-recall {
+  background-color: #8b5cf6;
+}
+
+.performance-bar-f1 {
+  background-color: #f59e0b;
+}
+
+/* Confidence Indicators */
+.confidence-high {
+  background-color: #10b981;
+  color: #065f46;
+}
+
+.confidence-medium {
+  background-color: #f59e0b;
+  color: #92400e;
+}
+
+.confidence-low {
+  background-color: #ef4444;
+  color: #991b1b;
+}
+
+/* Quality Score Visualization */
+.quality-excellent {
+  background-color: #10b981;
+  color: #065f46;
+}
+
+.quality-good {
+  background-color: #3b82f6;
+  color: #1e3a8a;
+}
+
+.quality-fair {
+  background-color: #f59e0b;
+  color: #92400e;
+}
+
+.quality-poor {
+  background-color: #ef4444;
+  color: #991b1b;
+}
+
+/* Training Progress Indicators */
+.training-progress {
+  background-color: #60a5fa;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.5s ease;
+}
+
+.training-progress-container {
+  width: 100%;
+  height: 0.5rem;
+  background-color: #374151;
+  border-radius: 9999px;
+}
+
+/* Status Indicators */
+.status-completed {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.status-running {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.status-queued {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.status-failed {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* Pipeline Status Bars */
+.pipeline-status-bar {
+  height: 0.25rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.pipeline-status-success {
+  background-color: #10b981;
+}
+
+.pipeline-status-warning {
+  background-color: #f59e0b;
+}
+
+.pipeline-status-error {
+  background-color: #ef4444;
+}
+
+.pipeline-status-info {
+  background-color: #3b82f6;
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 768px) {
+  .composition-chart-container {
+    height: 1rem;
+  }
+  
+  .architecture-node {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .performance-bar {
+    height: 1rem;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Hover Effects */
+.metric-card:hover .metric-progress {
+  transform: scaleX(1.02);
+}
+
+.model-card:hover .architecture-node {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.dataset-card:hover .composition-chart-container {
+  transform: scaleY(1.1);
+}

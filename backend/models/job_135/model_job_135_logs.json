@@ -1,0 +1,158 @@
+[
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "Training started",
+    "elapsed_time": 0.0
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "Task type: classification",
+    "elapsed_time": 0.0010237693786621094
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "Training samples: 28, Features: 7",
+    "elapsed_time": 0.0010237693786621094
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "Selecting optimal models...",
+    "elapsed_time": 0.0010237693786621094
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "Selected 3 models: ['Logistic Regression', 'Random Forest', 'Gradient Boosting']",
+    "elapsed_time": 0.0020661354064941406
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "Training model 1/3: Logistic Regression",
+    "elapsed_time": 0.0031652450561523438
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 0.0031652450561523438
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "  Best params: {'solver': 'liblinear', 'penalty': 'l2', 'C': 0.01}",
+    "elapsed_time": 0.1388099193572998
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "  Fitting Logistic Regression...",
+    "elapsed_time": 0.1393272876739502
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "  Training completed in 0.14s",
+    "elapsed_time": 0.14191913604736328
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "SUCCESS",
+    "message": "Logistic Regression - Score: 0.7500",
+    "elapsed_time": 0.14398193359375
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "Training model 2/3: Random Forest",
+    "elapsed_time": 0.14398193359375
+  },
+  {
+    "timestamp": "2026-01-07 17:45:41",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 0.14449620246887207
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "INFO",
+    "message": "  Best params: {'n_estimators': 200, 'min_samples_split': 5, 'min_samples_leaf': 4, 'max_depth': 20}",
+    "elapsed_time": 1.4421699047088623
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "INFO",
+    "message": "  Fitting Random Forest...",
+    "elapsed_time": 1.443681001663208
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "INFO",
+    "message": "  Training completed in 1.54s",
+    "elapsed_time": 1.6861357688903809
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "SUCCESS",
+    "message": "Random Forest - Score: 0.7500",
+    "elapsed_time": 1.7750964164733887
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "INFO",
+    "message": "Training model 3/3: Gradient Boosting",
+    "elapsed_time": 1.7767877578735352
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 1.7767877578735352
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "INFO",
+    "message": "  Fitting Gradient Boosting...",
+    "elapsed_time": 1.7773041725158691
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "INFO",
+    "message": "  Training completed in 0.05s",
+    "elapsed_time": 1.8304948806762695
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "SUCCESS",
+    "message": "Gradient Boosting - Score: 0.7500",
+    "elapsed_time": 1.8340425491333008
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "SUCCESS",
+    "message": "Best model: Logistic Regression (Score: 0.7500)",
+    "elapsed_time": 1.8345494270324707
+  },
+  {
+    "timestamp": "2026-01-07 17:45:42",
+    "level": "INFO",
+    "message": "Generating comprehensive evaluation...",
+    "elapsed_time": 1.8350634574890137
+  },
+  {
+    "timestamp": "2026-01-07 17:45:43",
+    "level": "INFO",
+    "message": "Evaluation completed successfully",
+    "elapsed_time": 2.3575098514556885
+  },
+  {
+    "timestamp": "2026-01-07 17:45:45",
+    "level": "INFO",
+    "message": "Model saved to models\\job_135\\model_job_135.joblib",
+    "elapsed_time": 4.2530694007873535
+  }
+]

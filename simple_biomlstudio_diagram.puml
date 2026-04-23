@@ -1,0 +1,193 @@
+@startuml BioMLStudio
+
+class User {
+  +id: String
+  +username: String
+  +email: String
+  +password: String
+  +created_at: DateTime
+  +is_active: Boolean
+  +login(): AuthToken
+  +logout(): void
+  +updateProfile(): void
+  +getDatasets(): Dataset[]
+}
+
+class AuthToken {
+  +token: String
+  +user_id: String
+  +expires_at: DateTime
+  +is_valid: Boolean
+  +authenticate(): Boolean
+  +refresh(): AuthToken
+}
+
+class Dataset {
+  +id: String
+  +name: String
+  +file_path: String
+  +file_type: String (CSV, FASTA, JSON)
+  +file_size: Long
+  +upload_date: DateTime
+  +user_id: String
+  +status: String
+  +upload(): void
+  +validate(): Boolean
+  +delete(): void
+  +getPreview(): DataPreview
+  +getSequences(): DNASequence[]
+}
+
+class DNASequence {
+  +sequence_id: String
+  +sequence: String
+  +length: Integer
+  +type: String (DNA, RNA, PROTEIN)
+  +gc_content: Float
+  +dataset_id: String
+  +validateSequence(): Boolean
+  +getMetadata(): SequenceMetadata
+  +calculateGCContent(): Float
+}
+
+class DNAAnalysisJob {
+  +job_id: String
+  +dataset_id: String
+  +user_id: String
+  +analysis_config: JSON
+  +status: String (pending, running, completed, failed)
+  +created_at: DateTime
+  +completed_at: DateTime
+  +progress: Float
+  +run(): void
+  +getProgress(): Float
+  +cancel(): void
+  +getResults(): AnalysisResults
+}
+
+class DNADiscoveryService {
+  +genetic_code: Map<String, String>
+  +motif_libraries: Map<String, String>
+  +min_orf_length: Integer
+  +batch_size: Integer
+  +discoverGenes(sequences): GeneResults
+  +identifyMutations(sequences): MutationResults
+  +detectPathogens(sequences): PathogenResults
+  +findDrugTargets(sequences): DrugTargetResults
+  +identifyMotifs(sequences): MotifResults
+  +generateBiomarkers(sequences): BiomarkerResults
+  +extractEvolutionary(sequences): EvolutionaryResults
+}
+
+class AnalysisResults {
+  +result_id: String
+  +job_id: String
+  +analysis_id: String
+  +summary: JSON
+  +gene_discovery: JSON
+  +mutation_analysis: JSON
+  +drug_targets: JSON
+  +pathogen_detection: JSON
+  +motif_analysis: JSON
+  +biomarker_generation: JSON
+  +evolutionary_analysis: JSON
+  +created_at: DateTime
+  +download(): File
+  +visualize(): Visualization
+  +exportReport(): Report
+}
+
+class MLModelJob {
+  +job_id: String
+  +dataset_id: String
+  +user_id: String
+  +model_type: String
+  +algorithm: String
+  +hyperparameters: JSON
+  +status: String
+  +accuracy: Float
+  +training_progress: Float
+  +created_at: DateTime
+  +train(): void
+  +evaluate(): ModelMetrics
+  +predict(data): Predictions
+  +stop(): void
+}
+
+class AutoMLService {
+  +available_algorithms: Map<String, ModelConfig>
+  +hyperparameter_grids: Map<String, ParameterGrid>
+  +task_models: Map<String, String[]>
+  +optimization_method: String
+  +max_iterations: Integer
+  +selectModels(taskType): ModelConfigs[]
+  +optimizeHyperparameters(model): OptimalParams
+  +evaluateModels(models): ModelComparison
+  +recommendBest(results): ModelConfig
+  +getModelInstance(config): MLModel
+}
+
+class ModelMetrics {
+  +accuracy: Float
+  +precision: Float
+  +recall: Float
+  +f1_score: Float
+  +confusion_matrix: Matrix
+  +feature_importance: JSON
+  +generateReport(): Report
+  +compare(other): Comparison
+}
+
+class TrainedModel {
+  +model_id: String
+  +job_id: String
+  +algorithm: String
+  +model_file_path: String
+  +model_size: Long
+  +performance_metrics: JSON
+  +training_duration: Integer
+  +created_at: DateTime
+  +download(): File
+  +predict(input): Prediction
+  +delete(): void
+  +deploy(): DeploymentInfo
+}
+
+class Pipeline {
+  +pipeline_id: String
+  +name: String
+  +user_id: String
+  +steps: JSON[]
+  +status: String
+  +created_at: DateTime
+  +execute(): PipelineResult
+  +save(): void
+  +clone(): Pipeline
+  +addStep(step): void
+}
+
+' -----------------------------
+' Relationships
+' -----------------------------
+
+User ||--o{ Dataset : uploads
+User ||--o{ DNAAnalysisJob : creates
+User ||--o{ MLModelJob : creates
+User ||--o{ Pipeline : builds
+User ||--|| AuthToken : authenticated_by
+
+Dataset ||--o{ DNASequence : contains
+Dataset ||--o{ DNAAnalysisJob : analyzed_by
+Dataset ||--o{ MLModelJob : used_in
+
+DNAAnalysisJob ||--|| AnalysisResults : produces
+DNAAnalysisJob }o--|| DNADiscoveryService : processed_by
+
+MLModelJob ||--|| TrainedModel : produces
+MLModelJob ||--|| ModelMetrics : evaluated_with
+MLModelJob }o--|| AutoMLService : optimized_by
+
+Pipeline ||--o{ MLModelJob : contains
+Pipeline ||--o{ DNAAnalysisJob : contains
+
+@enduml

@@ -1,0 +1,194 @@
+[
+  {
+    "timestamp": "2025-12-07 21:57:11",
+    "level": "INFO",
+    "message": "Training started",
+    "elapsed_time": 0.0
+  },
+  {
+    "timestamp": "2025-12-07 21:57:11",
+    "level": "INFO",
+    "message": "Task type: classification",
+    "elapsed_time": 0.0030128955841064453
+  },
+  {
+    "timestamp": "2025-12-07 21:57:11",
+    "level": "INFO",
+    "message": "Training samples: 34, Features: 7",
+    "elapsed_time": 0.008014440536499023
+  },
+  {
+    "timestamp": "2025-12-07 21:57:11",
+    "level": "INFO",
+    "message": "Selecting optimal models...",
+    "elapsed_time": 0.011013984680175781
+  },
+  {
+    "timestamp": "2025-12-07 21:57:11",
+    "level": "INFO",
+    "message": "Selected 4 models: ['Logistic Regression', 'Random Forest', 'Gradient Boosting', 'Support Vector Machine']",
+    "elapsed_time": 0.019536972045898438
+  },
+  {
+    "timestamp": "2025-12-07 21:57:11",
+    "level": "INFO",
+    "message": "Training model 1/4: Logistic Regression",
+    "elapsed_time": 0.020852088928222656
+  },
+  {
+    "timestamp": "2025-12-07 21:57:11",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 0.023850679397583008
+  },
+  {
+    "timestamp": "2025-12-07 21:57:16",
+    "level": "INFO",
+    "message": "  Best params: {'solver': 'lbfgs', 'penalty': 'l2', 'C': 10}",
+    "elapsed_time": 4.911146402359009
+  },
+  {
+    "timestamp": "2025-12-07 21:57:16",
+    "level": "INFO",
+    "message": "  Fitting Logistic Regression...",
+    "elapsed_time": 4.91233491897583
+  },
+  {
+    "timestamp": "2025-12-07 21:57:16",
+    "level": "INFO",
+    "message": "  Training completed in 4.91s",
+    "elapsed_time": 4.93311619758606
+  },
+  {
+    "timestamp": "2025-12-07 21:57:16",
+    "level": "SUCCESS",
+    "message": "Logistic Regression - Score: 1.0000",
+    "elapsed_time": 4.938796758651733
+  },
+  {
+    "timestamp": "2025-12-07 21:57:16",
+    "level": "INFO",
+    "message": "Training model 2/4: Random Forest",
+    "elapsed_time": 4.940701007843018
+  },
+  {
+    "timestamp": "2025-12-07 21:57:16",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 4.941876173019409
+  },
+  {
+    "timestamp": "2025-12-07 21:57:19",
+    "level": "INFO",
+    "message": "  Best params: {'n_estimators': 100, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_depth': None}",
+    "elapsed_time": 7.8532555103302
+  },
+  {
+    "timestamp": "2025-12-07 21:57:19",
+    "level": "INFO",
+    "message": "  Fitting Random Forest...",
+    "elapsed_time": 7.855308532714844
+  },
+  {
+    "timestamp": "2025-12-07 21:57:19",
+    "level": "INFO",
+    "message": "  Training completed in 3.24s",
+    "elapsed_time": 8.181451320648193
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "SUCCESS",
+    "message": "Random Forest - Score: 1.0000",
+    "elapsed_time": 8.307580709457397
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "INFO",
+    "message": "Training model 3/4: Gradient Boosting",
+    "elapsed_time": 8.308914422988892
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 8.309910535812378
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "INFO",
+    "message": "  Fitting Gradient Boosting...",
+    "elapsed_time": 8.310911655426025
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "INFO",
+    "message": "  Training completed in 0.15s",
+    "elapsed_time": 8.456697702407837
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "SUCCESS",
+    "message": "Gradient Boosting - Score: 1.0000",
+    "elapsed_time": 8.461869955062866
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "INFO",
+    "message": "Training model 4/4: Support Vector Machine",
+    "elapsed_time": 8.462865591049194
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "INFO",
+    "message": "  Optimizing hyperparameters...",
+    "elapsed_time": 8.463866472244263
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "INFO",
+    "message": "  Best params: {'kernel': 'rbf', 'gamma': 0.01, 'C': 100}",
+    "elapsed_time": 8.60669493675232
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "INFO",
+    "message": "  Fitting Support Vector Machine...",
+    "elapsed_time": 8.607696294784546
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "INFO",
+    "message": "  Training completed in 0.15s",
+    "elapsed_time": 8.611167192459106
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "SUCCESS",
+    "message": "Support Vector Machine - Score: 1.0000",
+    "elapsed_time": 8.616691827774048
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "SUCCESS",
+    "message": "Best model: Logistic Regression (Score: 1.0000)",
+    "elapsed_time": 8.617711067199707
+  },
+  {
+    "timestamp": "2025-12-07 21:57:20",
+    "level": "INFO",
+    "message": "Generating comprehensive evaluation...",
+    "elapsed_time": 8.618816375732422
+  },
+  {
+    "timestamp": "2025-12-07 21:57:21",
+    "level": "INFO",
+    "message": "Evaluation completed successfully",
+    "elapsed_time": 10.101401805877686
+  },
+  {
+    "timestamp": "2025-12-07 21:57:26",
+    "level": "INFO",
+    "message": "Model saved to models\\job_106\\model_job_106.joblib",
+    "elapsed_time": 14.477915048599243
+  }
+]

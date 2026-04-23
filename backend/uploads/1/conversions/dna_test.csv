@@ -1,0 +1,4 @@
+sequence_id,description,sequence,length,sequence_type
+seq1,seq1,ATGCGTACGTAGCTAGCTAG,20,dna
+seq2,seq2,CGTAGCTAGCATCGATCGAT,20,dna
+seq3,seq3,GGGAAAATTTCCCGGGAAA,19,dna

@@ -1,0 +1,128 @@
+[
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "INFO",
+    "message": "Training started",
+    "elapsed_time": 0.0
+  },
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "INFO",
+    "message": "Task type: dna_classification",
+    "elapsed_time": 0.0013799667358398438
+  },
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "INFO",
+    "message": "Training samples: 28, Features: 71",
+    "elapsed_time": 0.0023801326751708984
+  },
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "INFO",
+    "message": "Selecting optimal models...",
+    "elapsed_time": 0.0023801326751708984
+  },
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "INFO",
+    "message": "Selected 3 models: ['Random Forest', 'Logistic Regression', 'XGBoost']",
+    "elapsed_time": 0.0034027099609375
+  },
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "INFO",
+    "message": "Training model 1/3: Random Forest",
+    "elapsed_time": 0.0034027099609375
+  },
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "INFO",
+    "message": "  Fitting Random Forest...",
+    "elapsed_time": 0.004861116409301758
+  },
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "INFO",
+    "message": "  Training completed in 0.16s",
+    "elapsed_time": 0.1679232120513916
+  },
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "SUCCESS",
+    "message": "Random Forest - Score: 1.0000",
+    "elapsed_time": 0.25664782524108887
+  },
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "INFO",
+    "message": "Training model 2/3: Logistic Regression",
+    "elapsed_time": 0.25765252113342285
+  },
+  {
+    "timestamp": "2025-12-05 00:18:29",
+    "level": "INFO",
+    "message": "  Fitting Logistic Regression...",
+    "elapsed_time": 0.2586700916290283
+  },
+  {
+    "timestamp": "2025-12-05 00:18:31",
+    "level": "INFO",
+    "message": "  Training completed in 1.39s",
+    "elapsed_time": 1.6521830558776855
+  },
+  {
+    "timestamp": "2025-12-05 00:18:31",
+    "level": "SUCCESS",
+    "message": "Logistic Regression - Score: 1.0000",
+    "elapsed_time": 1.6537036895751953
+  },
+  {
+    "timestamp": "2025-12-05 00:18:31",
+    "level": "INFO",
+    "message": "Training model 3/3: XGBoost",
+    "elapsed_time": 1.6547112464904785
+  },
+  {
+    "timestamp": "2025-12-05 00:18:31",
+    "level": "INFO",
+    "message": "  Fitting XGBoost...",
+    "elapsed_time": 1.6547112464904785
+  },
+  {
+    "timestamp": "2025-12-05 00:18:31",
+    "level": "INFO",
+    "message": "  Training completed in 0.17s",
+    "elapsed_time": 1.8292362689971924
+  },
+  {
+    "timestamp": "2025-12-05 00:18:31",
+    "level": "SUCCESS",
+    "message": "XGBoost - Score: 1.0000",
+    "elapsed_time": 1.832371711730957
+  },
+  {
+    "timestamp": "2025-12-05 00:18:31",
+    "level": "SUCCESS",
+    "message": "Best model: Random Forest (Score: 1.0000)",
+    "elapsed_time": 1.833371877670288
+  },
+  {
+    "timestamp": "2025-12-05 00:18:31",
+    "level": "INFO",
+    "message": "Generating comprehensive evaluation...",
+    "elapsed_time": 1.8343708515167236
+  },
+  {
+    "timestamp": "2025-12-05 00:18:32",
+    "level": "INFO",
+    "message": "Evaluation completed successfully",
+    "elapsed_time": 2.5814146995544434
+  },
+  {
+    "timestamp": "2025-12-05 00:18:35",
+    "level": "INFO",
+    "message": "Model saved to models\\job_74\\model_job_74.joblib",
+    "elapsed_time": 5.772584676742554
+  }
+]

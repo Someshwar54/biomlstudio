@@ -1,0 +1,152 @@
+[
+  {
+    "timestamp": "2025-12-03 22:06:06",
+    "level": "INFO",
+    "message": "Training started",
+    "elapsed_time": 0.0
+  },
+  {
+    "timestamp": "2025-12-03 22:06:06",
+    "level": "INFO",
+    "message": "Task type: general_classification",
+    "elapsed_time": 0.0013797283172607422
+  },
+  {
+    "timestamp": "2025-12-03 22:06:06",
+    "level": "INFO",
+    "message": "Training samples: 34, Features: 71",
+    "elapsed_time": 0.0013797283172607422
+  },
+  {
+    "timestamp": "2025-12-03 22:06:06",
+    "level": "INFO",
+    "message": "Selecting optimal models...",
+    "elapsed_time": 0.0023813247680664062
+  },
+  {
+    "timestamp": "2025-12-03 22:06:06",
+    "level": "INFO",
+    "message": "Selected 4 models: ['Logistic Regression', 'Random Forest', 'Gradient Boosting', 'Support Vector Machine']",
+    "elapsed_time": 0.0033774375915527344
+  },
+  {
+    "timestamp": "2025-12-03 22:06:06",
+    "level": "INFO",
+    "message": "Training model 1/4: Logistic Regression",
+    "elapsed_time": 0.004377841949462891
+  },
+  {
+    "timestamp": "2025-12-03 22:06:06",
+    "level": "INFO",
+    "message": "  Fitting Logistic Regression...",
+    "elapsed_time": 0.004377841949462891
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "  Training completed in 4.83s",
+    "elapsed_time": 4.837496519088745
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "SUCCESS",
+    "message": "Logistic Regression - Score: 1.0000",
+    "elapsed_time": 4.839994192123413
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "Training model 2/4: Random Forest",
+    "elapsed_time": 4.839994192123413
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "  Fitting Random Forest...",
+    "elapsed_time": 4.839994192123413
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "  Training completed in 0.15s",
+    "elapsed_time": 4.988659858703613
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "SUCCESS",
+    "message": "Random Forest - Score: 1.0000",
+    "elapsed_time": 5.053367614746094
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "Training model 3/4: Gradient Boosting",
+    "elapsed_time": 5.053367614746094
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "  Fitting Gradient Boosting...",
+    "elapsed_time": 5.054366827011108
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "  Training completed in 0.05s",
+    "elapsed_time": 5.104862213134766
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "SUCCESS",
+    "message": "Gradient Boosting - Score: 1.0000",
+    "elapsed_time": 5.1062538623809814
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "Training model 4/4: Support Vector Machine",
+    "elapsed_time": 5.107262372970581
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "  Fitting Support Vector Machine...",
+    "elapsed_time": 5.107262372970581
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "  Training completed in 0.00s",
+    "elapsed_time": 5.111613035202026
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "SUCCESS",
+    "message": "Support Vector Machine - Score: 1.0000",
+    "elapsed_time": 5.113615036010742
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "SUCCESS",
+    "message": "Best model: Logistic Regression (Score: 1.0000)",
+    "elapsed_time": 5.114614963531494
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "Generating comprehensive evaluation...",
+    "elapsed_time": 5.114614963531494
+  },
+  {
+    "timestamp": "2025-12-03 22:06:11",
+    "level": "INFO",
+    "message": "Evaluation completed successfully",
+    "elapsed_time": 5.413458585739136
+  },
+  {
+    "timestamp": "2025-12-03 22:06:13",
+    "level": "INFO",
+    "message": "Model saved to models\\job_50\\model_job_50.joblib",
+    "elapsed_time": 6.832105875015259
+  }
+]
